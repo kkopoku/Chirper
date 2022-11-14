@@ -14,84 +14,55 @@ defineProps({
 
   <Head title="Welcome" />
 
-  <div class="grid grid-rows-1 grid-cols-2">
+  <div class="grid grid-cols-2">
+
     <div>
       <img style='width: 100%; height: 100%;' v-bind:src="'assets/images/background01.jpg'">
     </div>
-    <div class="grid items-center justify-center align-middle">
+    
+    <div class="grid grid-rows-2 items-center justify-center align-middle">
 
-      <div class="text-4xl">
+      <div class="text-4xl font-bold">
+        <img style="width: 10%;" v-bind:src="'https://cdn-icons-png.flaticon.com/512/616/616438.png'">
         Welcome To Chirper
       </div>
       
-      <Link v-if="$page.props.auth.user" :href="route('dashboard')">
+      <div>
+        <Link v-if="$page.props.auth.user" :href="route('dashboard')">
           <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
             Go Back To Dashboard
           </button>
-      </Link>
+        </Link>
+      
 
-      <template v-else>
-        <div v-if="canLogin" class="hidden sm:block">
+        <template v-else>
+          <div v-if="canLogin" class="hidden sm:block">
 
-          <div class="grid grid-cols-1 grid-rows-2 gap-7">
+            <div class="grid grid-cols-1 grid-rows-2 gap-7">
+              <div>
+                <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                  <Link :href="route('login')">
+                    Login Hereeeeeeeee !
+                  </Link>
+                </button>
+              </div>
 
-          <div>
-            <Link :href="route('login')">
-              <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                Login Hereeeeeeeeeee !
-              </button>
-            </Link>
+              <div>
+                <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                  <Link v-if="canRegister" :href="route('register')">
+                    Click Me To Register !
+                  </Link>
+                </button>
+              </div>
+            </div>
+
           </div>
-
-          <div>
-            <Link v-if="canRegister" :href="route('register')">
-              <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                Click Me To Register !
-              </button>
-            </Link>
-          </div>
-
-          </div>
-
-        </div>
-      </template>
+        </template>
+      </div>
 
     </div>
   </div>
   
-
-
-
-
-
-  <!-- <div v-if="canLogin" class="top-10 right-full" >
-      <Link v-if="$page.props.auth.user" :href="route('dashboard')"
-        class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</Link>
-      <template v-else>
-        <Link :href="route('login')" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</Link>
-
-        <Link v-if="canRegister" :href="route('register')"
-          class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</Link>
-      </template>
-    </div> -->
-
 </template>
 
-<!-- <script>
-export default {
-  mounted: function() { 
-    if (this.source) { //is it empty
-      this.image = this.source //replace placeholder
-    }
-   this.loading = false
-  },
-  data () {
-    return {
-      image: '/assets/images/zeepay.png',//url for placeholder image
-      loading: true
-    }
-  },
-  props: ['source'],
-}
-</script> -->
 
