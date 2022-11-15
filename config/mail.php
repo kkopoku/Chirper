@@ -40,18 +40,14 @@ return [
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'password' => env('MAIL_PASSWORD')
         ],
 
         'ses' => [
             'transport' => 'ses',
         ],
 
-        'mailgun' => [
-            'transport' => 'mailgun',
-        ],
+      
 
         'postmark' => [
             'transport' => 'postmark',
@@ -63,7 +59,7 @@ return [
         ],
 
         'log' => [
-            'transport' => 'log',
+            'transport' => 'log', 
             'channel' => env('MAIL_LOG_CHANNEL'),
         ],
 
