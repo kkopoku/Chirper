@@ -15,9 +15,9 @@ import { Head } from '@inertiajs/inertia-vue3';
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        You're logged in!
+                <div class="bg-white/50 overflow-hidden shadow-lg sm:rounded-lg">
+                    <div class="p-6 border-b border-gray-200">
+                        Hey {{ $page.props.auth.user.name }} You're Succesfully logged in!
                     </div>
                 </div>
             </div>

@@ -18,6 +18,7 @@ const sidebarOpen = ref(false);
 </script>
 
 <template>
+  <Head title="Welcome" />
   <div class="w-full min-h-screen font-sans text-gray-900 bg-gradient-to-br from-transparent to-blue-300"
        :class="sidebarOpen ? 'overflow-hidden h-screen' : ''">
 

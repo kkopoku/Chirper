@@ -28,7 +28,7 @@ const form = useForm({
                 <InputError :message="form.errors.message" class="mt-2" />
                 <PrimaryButton class="mt-4">Chirp</PrimaryButton>
             </form>
-            <div class="mt-6 bg-white shadow-sm rounded-lg divide-y ">
+            <div class="mt-6 bg-slate-100 shadow-sm rounded-lg divide-y ">
                 <Chirp
                     v-for="chirp in chirps"
                     :key="chirp.id"
