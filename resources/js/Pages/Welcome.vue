@@ -12,7 +12,12 @@ defineProps({
   phpVersion: String,
 })
 
-const menus = ["Home", "FAQs", "Contact"];
+// const menus = ["Home", "FAQs", "Contact"];
+const menus = [
+  {"id": "Home", "url": "#"},
+  {"id": "FAQs", "url": "/unavailable"},
+  {"id": "Contact", "url": "/unavailable"},
+]
 const sidebarOpen = ref(false);
 
 </script>
@@ -32,7 +37,7 @@ const sidebarOpen = ref(false);
            :class="sidebarOpen ? 'fixed flex' : 'hidden'">
         <ul class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6 lg:md:-x-8">
           <li class="text-lg md:text-base lg:text-lg font-bold group" :class="{ 'text-green-500': activeMenu === menu }" v-for="menu in menus" :key="menu">
-            <a href='#'> {{ menu }} </a>
+            <Link :href=" menu.url " class="bg-transparent"> {{ menu.id }} </Link>
             <div
               class="h-0.5 bg-green-700 scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"
             />

@@ -26,6 +26,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('/unavailable', function () { 
+    return Inertia::render('FeatureUnavailable');
+})->name('unavailable');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
