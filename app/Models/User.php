@@ -50,4 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function chirps(){
         return $this->hasMany(Chirp::class);
     }
+
+    public function likes(){
+        return $this->hasMany(Likes::class);
+    }
 }

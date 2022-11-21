@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { ref } from 'vue';
+import LikeIcon from '@/Components/LikeIcon.vue';
  
 dayjs.extend(relativeTime);
 
@@ -59,6 +60,11 @@ const editing = ref(false);
                 </div>
             </form>
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
+            <div class="flex justify-end">
+                <div>
+                    <LikeIcon class="w-2/3  fill-slate-300 hover:drop-shadow-2xl" />
+                </div>
+            </div>
         </div>
     </div>
 </template>
