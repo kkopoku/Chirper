@@ -10,6 +10,11 @@ class Like extends Model
 {
     use HasFactory, UUID;
 
+    protected $fillable = [
+        'kf_user_id',
+        'kf_chirp_id',
+    ];
+
     public function user(){
         $this->belongsTo(user::class);
     }
