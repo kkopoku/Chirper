@@ -18,6 +18,12 @@ const form = useForm({
 });
 
 const editing = ref(false);
+const isLiked = ref(false);
+
+function toggleLike(){
+    isLiked = !isLiked;
+    console.log(isLiked);
+}
 </script>
  
 <template>
@@ -50,7 +56,7 @@ const editing = ref(false);
                     </template>
                 </Dropdown>
             </div>
-            <small class="text-gray-800 font-bold opacity-60">{{ chirp.user.email }}</small>
+            <small v-if=" chirp.user.username != NULL " class="text-gray-800 font-bold opacity-60">@{{ chirp.user.username }}</small>
             <form v-if="editing" @submit.prevent="form.put(route('chirps.update', chirp.id), { onSuccess: () => editing = false })">
                 <textarea v-model="form.message" class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea>
                 <InputError :message="form.errors.message" class="mt-2" />
@@ -62,7 +68,7 @@ const editing = ref(false);
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
             <div class="flex justify-end">
                 <div>
-                    <LikeIcon class="w-2/3  fill-slate-300 hover:drop-shadow-2xl" />
+                    <LikeIcon class="w-2/3" :class=" isLiked ? 'fill-red-700' : 'fill-blue-300 hover:fill-red-300' " @click=" ()=> isLiked= !isLiked"  />
                 </div>
             </div>
         </div>
