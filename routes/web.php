@@ -5,6 +5,7 @@ use App\Http\Controllers\LikeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    log::info("kkkkkkk");
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -43,5 +45,8 @@ Route::resource('likes', LikeController::class)
 ->only(['store', 'destroy'])
 ->middleware(['auth', 'verified']);
 
+// Route::post('/likes', function(){
+//     log::info("This shit is finally working");
+// })->name("like");
 
 require __DIR__.'/auth.php';

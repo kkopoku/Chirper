@@ -19,7 +19,7 @@ return new class extends Migration
             $table->uuid('kf_chirp_id');
             $table->foreign('kf_user_id')->references('id')->on('users');
             $table->foreign('kf_chirp_id')->references('id')->on('chirps');
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 

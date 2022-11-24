@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use Illuminate\Http\Request;
-use Illuminate\Log;
+use Illuminate\Support\Facades\log;
 
 class LikeController extends Controller
 {
@@ -28,10 +28,14 @@ class LikeController extends Controller
     {
         
         $like = new Like;
-        $like->kf_user_id = $request;
-        $like->save;
-        
+        $like->kf_user_id = $request->userId;
+        $like->kf_chirp_id = $request->chirpId;
+        $like->save();
         return redirect(route('chirps.index'));
+        
+        // log::info($request->chirpId);
+        
+
     }
 
     /**
