@@ -6,11 +6,18 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/inertia-vue3';
 import Chirp from '@/Components/Chirp.vue';
  
-defineProps(['chirps']);
+const props = defineProps(['chirps', 'likes']);
 
 const form = useForm({
     message: '',
 });
+
+
+function log(){
+    console.log(props.likes);
+}
+
+const likes = props.likes;
 
 </script>
 
@@ -28,9 +35,12 @@ const form = useForm({
                 <InputError :message="form.errors.message" class="mt-2" />
                 <PrimaryButton class="mt-4">Chirp</PrimaryButton>
             </form>
+            <div class="pt-5">
+                <button class="bg-red-900 px-6 rounded-xl h-12" @click=" log "> test </button>
+            </div>
             <div class="mt-6 bg-slate-100 shadow-sm rounded-lg divide-y ">
                 <Chirp
-                    v-for="chirp in chirps"
+                    v-for="chirp in props.chirps"
                     :key="chirp.id"
                     :chirp="chirp"
                 />

@@ -12,7 +12,7 @@ import LikeIcon from '@/Components/LikeIcon.vue';
  
 dayjs.extend(relativeTime);
 
-const props = defineProps(['chirp']);
+const props = defineProps(['chirp','likes']);
 
 const form = useForm({
     message : props.chirp.message,
@@ -21,10 +21,8 @@ const form = useForm({
 const editing = ref(false);
 const isLiked = ref(false);
 
-function performLike(){
-    route('likes.store');
-    $response = route('likes.store');
-    console.log(response);
+function log(){
+    console.log(props)
 }
 
 </script>
@@ -71,9 +69,19 @@ function performLike(){
             </form>
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
             <div class="flex justify-end">
-                <Link :href=" route('likes.store', {chirpId: chirp.id, userId: $page.props.auth.user.id}) " method="post" @click=" isLiked = !isLiked " as="icon">
-                    <LikeIcon class="w-2/3" :class=" isLiked ? 'fill-red-700' : 'fill-blue-300 hover:fill-red-300' "  />
-                </Link>
+                <div v-if = !isLiked>
+                    <Link :href=" route('like', {chirpId: chirp.id, userId: $page.props.auth.user.id}) " method="post" @click=" isLiked = !isLiked " as="icon">
+                        <LikeIcon class="w-2/3" :class=" isLiked ? 'fill-red-700' : 'fill-blue-300 hover:fill-red-300' "  />
+                    </Link>
+                </div>
+                <div v-else>
+                    <Link :href=" route('removeLike', {chirpId: chirp.id , userId: $page.props.auth.user.id}) " method="post" @click=" isLiked = !isLiked " as="icon">
+                        <LikeIcon class="w-2/3" :class=" isLiked ? 'fill-red-700' : 'fill-blue-300 hover:fill-red-300' "  />
+                    </Link>
+                </div>
+                <div>
+                    <button class="bg-blue-600 rounded-md h-5 px-5 text-sm" @click="log">Test</button>
+                </div>
             </div>
         </div>
     </div>

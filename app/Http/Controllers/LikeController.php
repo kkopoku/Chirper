@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\Chirp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\log;
 
@@ -33,8 +34,7 @@ class LikeController extends Controller
         $like->save();
         return redirect(route('chirps.index'));
         
-        // log::info($request->chirpId);
-        
+        log::info("its working");
 
     }
 
@@ -78,8 +78,11 @@ class LikeController extends Controller
      * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Like $like)
+    public function removeLike(Request $request)
     {
-        //
+        // log::info(  $this->authorize('delete', $like) );
+        log::info($request);
+        // $like->delete();
+        // return redirect(route('chirps.index'));
     }
 }

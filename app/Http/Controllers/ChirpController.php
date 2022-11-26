@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chirp;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\log;
+use Illuminate\Support\Facades\DB;
 
 class ChirpController extends Controller
 {
@@ -13,10 +16,13 @@ class ChirpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $user = $request->user();
+        log::info($user->id);
         return Inertia::render('Chirps/Index',[
             'chirps' => Chirp::with('user:id,name,username,email')->latest()->get(), 
+            'likes' =>  DB::table('likes')->where('kf_user_id', $user->id )->get()
         ]);
     }
 
@@ -48,9 +54,7 @@ class ChirpController extends Controller
     public function destroy(Chirp $chirp){
         
         $this->authorize('delete', $chirp);
- 
         $chirp->delete();
- 
         return redirect(route('chirps.index'));
     }
 

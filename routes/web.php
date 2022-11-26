@@ -6,6 +6,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+use App\Models\Like;
+use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +32,6 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    log::info("kkkkkkk");
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -41,12 +44,20 @@ Route::get('/unavailable', function () {
     return Inertia::render('FeatureUnavailable');
 })->name('unavailable');
     
-Route::resource('likes', LikeController::class)
-->only(['store', 'destroy'])
-->middleware(['auth', 'verified']);
+Route::post('/like', function(Request $request){
+        $like = new Like;
+        $like->kf_user_id = $request->userId;
+        $like->kf_chirp_id = $request->chirpId;
+        $like->save();
+        return redirect(route('chirps.index'));
+})->name("like");
 
-// Route::post('/likes', function(){
-//     log::info("This shit is finally working");
-// })->name("like");
+Route::post('/removelike', function(Request $request){
+    $like = DB::table('likes')
+    ->where('kf_user_id', '=', $request->userId)
+    ->where('kf_chirp_id', '=', $request->chirpId)
+    ->delete();
+    // log::info($like->id);
+})->name("removeLike");
 
 require __DIR__.'/auth.php';
