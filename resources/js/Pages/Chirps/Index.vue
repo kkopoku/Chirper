@@ -5,19 +5,17 @@ import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/inertia-vue3';
 import Chirp from '@/Components/Chirp.vue';
+import { createDOMCompilerError } from '@vue/compiler-dom';
+import { onMounted } from '@vue/runtime-core';
  
-const props = defineProps(['chirps', 'likes']);
+// constants
+const props = defineProps(['chirps','user']);
+const form = useForm({message: ''});
 
-const form = useForm({
-    message: '',
-});
-
-
+// functions
 function log(){
-    console.log(props.likes);
+    console.log(props);
 }
-
-const likes = props.likes;
 
 </script>
 
@@ -43,6 +41,7 @@ const likes = props.likes;
                     v-for="chirp in props.chirps"
                     :key="chirp.id"
                     :chirp="chirp"
+                    :user="props.user"
                 />
             </div>
         </div>

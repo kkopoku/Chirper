@@ -6,26 +6,39 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { useForm } from '@inertiajs/inertia-vue3';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import LikeIcon from '@/Components/LikeIcon.vue';
  
 dayjs.extend(relativeTime);
 
-const props = defineProps(['chirp','likes']);
 
-const form = useForm({
-    message : props.chirp.message,
-});
-
+// constants
+const props = defineProps(['chirp','user']);
+const form = useForm({message : props.chirp.message});
 const editing = ref(false);
-const isLiked = ref(false);
+
+// functions
+function isLiked(){
+    var result;
+    for( let i=0 ; i<props.chirp.likes.length; i++){
+        if(props.chirp.likes[i].kf_user_id == props.user.id ){
+            result = true;
+        }
+    }
+    if(result != true){
+        result = false;
+    }
+    console.log(result)
+    return result;
+}
 
 function log(){
-    console.log(props)
+    console.log(isLiked());
 }
 
 </script>
+
  
 <template>
     <div class="p-6 flex space-x-2">
@@ -69,14 +82,15 @@ function log(){
             </form>
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
             <div class="flex justify-end">
-                <div v-if = !isLiked>
-                    <Link :href=" route('like', {chirpId: chirp.id, userId: $page.props.auth.user.id}) " method="post" @click=" isLiked = !isLiked " as="icon">
-                        <LikeIcon class="w-2/3" :class=" isLiked ? 'fill-red-700' : 'fill-blue-300 hover:fill-red-300' "  />
+                <div v-if = "isLiked() == false">
+                    <Link :href=" route('like', {chirpId: chirp.id, userId: $page.props.auth.user.id}) " method="post" as="icon">
+                       
+                        <LikeIcon class="w-2/3 fill-blue-300 hover:fill-red-300 "  />
                     </Link>
                 </div>
                 <div v-else>
-                    <Link :href=" route('removeLike', {chirpId: chirp.id , userId: $page.props.auth.user.id}) " method="post" @click=" isLiked = !isLiked " as="icon">
-                        <LikeIcon class="w-2/3" :class=" isLiked ? 'fill-red-700' : 'fill-blue-300 hover:fill-red-300' "  />
+                    <Link :href=" route('removeLike', {chirpId: chirp.id , userId: $page.props.auth.user.id}) " method="post" as="icon">
+                        <LikeIcon class="w-2/3 fill-red-700 "  />
                     </Link>
                 </div>
                 <div>

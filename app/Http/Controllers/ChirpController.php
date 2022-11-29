@@ -22,6 +22,7 @@ class ChirpController extends Controller
         log::info($user->id);
         return Inertia::render('Chirps/Index',[
             'chirps' => Chirp::with('user:id,name,username,email')->latest()->get(),
+            'user' => $request->user()
         ]);
     }
 
