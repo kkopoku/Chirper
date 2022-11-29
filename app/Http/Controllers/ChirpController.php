@@ -21,11 +21,9 @@ class ChirpController extends Controller
         $user = $request->user();
         log::info($user->id);
         return Inertia::render('Chirps/Index',[
-            'chirps' => Chirp::with('user:id,name,username,email')->latest()->get(), 
-            'likes' =>  DB::table('likes')->where('kf_user_id', $user->id )->get()
+            'chirps' => Chirp::with('user:id,name,username,email')->latest()->get(),
         ]);
     }
-
 
     public function store(Request $request){
         $validated = $request->validate([

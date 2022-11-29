@@ -11,10 +11,12 @@ class Chirp extends Model
 {
     use HasFactory;
     use UUID;
+   protected  $appends = ['likes'];
 
     protected $fillable = [
         'message',
     ];
+
 
     // protected $dispatchesEvents = [
     //     'created' => ChirpCreated::class,
@@ -26,5 +28,9 @@ class Chirp extends Model
 
     public function likes(){
         return $this->hasMany(Like::class);
+    }
+    public function getLikesAttribute(){
+        $id = $this->attributes['id'];
+        return  Like::where("kf_chirp_id", "=", $id)->get();
     }
 }
