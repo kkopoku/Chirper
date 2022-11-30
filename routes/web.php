@@ -44,20 +44,6 @@ Route::get('/unavailable', function () {
     return Inertia::render('FeatureUnavailable');
 })->name('unavailable');
     
-Route::post('/like', function(Request $request){
-        $like = new Like;
-        $like->kf_user_id = $request->userId;
-        $like->kf_chirp_id = $request->chirpId;
-        $like->save();
-        return redirect(route('chirps.index'));
-})->name("like");
-
-Route::post('/removelike', function(Request $request){
-    $like = DB::table('likes')
-    ->where('kf_user_id', '=', $request->userId)
-    ->where('kf_chirp_id', '=', $request->chirpId)
-    ->delete();
-    // log::info($like->id);
-})->name("removeLike");
+Route::resource('like', LikeController::class)->only(['store']);
 
 require __DIR__.'/auth.php';

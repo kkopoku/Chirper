@@ -83,13 +83,13 @@ function log(){
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
             <div class="flex justify-end">
                 <div v-if = "isLiked() == false">
-                    <Link :href=" route('like', {chirpId: chirp.id, userId: $page.props.auth.user.id}) " method="post" as="icon">
+                    <Link :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon">
                        
                         <LikeIcon class="w-2/3 fill-blue-300 hover:fill-red-300 "  />
                     </Link>
                 </div>
                 <div v-else>
-                    <Link :href=" route('removeLike', {chirpId: chirp.id , userId: $page.props.auth.user.id}) " method="post" as="icon">
+                    <Link :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon">
                         <LikeIcon class="w-2/3 fill-red-700 "  />
                     </Link>
                 </div>
