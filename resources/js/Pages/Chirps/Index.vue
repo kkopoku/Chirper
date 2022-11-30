@@ -5,8 +5,7 @@ import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/inertia-vue3';
 import Chirp from '@/Components/Chirp.vue';
-import { createDOMCompilerError } from '@vue/compiler-dom';
-import { onMounted } from '@vue/runtime-core';
+
  
 // constants
 const props = defineProps(['chirps','user']);
@@ -33,9 +32,9 @@ function log(){
                 <InputError :message="form.errors.message" class="mt-2" />
                 <PrimaryButton class="mt-4">Chirp</PrimaryButton>
             </form>
-            <div class="pt-5">
+            <!-- <div class="pt-5">
                 <button class="bg-red-900 px-6 rounded-xl h-12" @click=" log "> test </button>
-            </div>
+            </div> -->
             <div class="mt-6 bg-slate-100 shadow-sm rounded-lg divide-y ">
                 <Chirp
                     v-for="chirp in props.chirps"
