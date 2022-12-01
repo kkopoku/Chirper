@@ -33,6 +33,11 @@ function isLiked(){
     return result;
 }
 
+function likesCount(){
+    let result = (props.chirp.likes.length);
+    return result;
+}
+
 function log(){
     console.log(isLiked());
 }
@@ -82,6 +87,7 @@ function log(){
             </form>
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
             <div class="flex justify-end">
+                <div v-if="props.chirp.likes.length > 0" class="pr-1" :class="isLiked() == false ? 'text-grey-500' : 'text-red-500 font-extrabold'">{{ props.chirp.likes.length }}</div>
                 <div v-if = "isLiked() == false">
                     <Link preserve-scroll :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon" @click.prevent="preventDefault">
                         <LikeIcon class="w-2/3 fill-blue-300 hover:fill-red-300 "  />
@@ -92,9 +98,6 @@ function log(){
                         <LikeIcon class="w-2/3 fill-red-700 "  />
                     </Link>
                 </div>
-                <!-- <div>
-                    <button class="bg-blue-600 rounded-md h-5 px-5 text-sm" @click="log">Test</button>
-                </div> -->
             </div>
         </div>
     </div>

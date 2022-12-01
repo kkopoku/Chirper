@@ -43,7 +43,7 @@ const sidebarOpen = ref(false);
             />
           </li>
         </ul>
-        <Link :href="route('dashboard')" v-if="$page.props.auth.user" class="bg-transparent ">
+        <Link :href="route('dashboard.index')" v-if="$page.props.auth.user" class="bg-transparent ">
           <button class="flex justify-center items-center h-14 px-7 font-bold text-white bg-green-500 rounded-xl hover:shadow-2xl transition-shadow duration-300 whitespace-nowrap">
               Dashboard
           </button>

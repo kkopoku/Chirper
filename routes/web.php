@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,11 +30,11 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('index');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('dashboard', FollowController::class)
+->only(['index'])
+->middleware(['auth', 'verified']);
 
 
 Route::resource('chirps', ChirpController::class)
@@ -45,5 +46,7 @@ Route::get('/unavailable', function () {
 })->name('unavailable');
     
 Route::resource('like', LikeController::class)->only(['store']);
+
+Route::resource('follow', FollowController::class)->only(['store']);
 
 require __DIR__.'/auth.php';
