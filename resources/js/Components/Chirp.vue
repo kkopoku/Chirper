@@ -83,19 +83,18 @@ function log(){
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
             <div class="flex justify-end">
                 <div v-if = "isLiked() == false">
-                    <Link :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon">
-                       
+                    <Link preserve-scroll :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon" @click.prevent="preventDefault">
                         <LikeIcon class="w-2/3 fill-blue-300 hover:fill-red-300 "  />
                     </Link>
                 </div>
                 <div v-else>
-                    <Link :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon">
+                    <Link preserve-scroll :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon" @click.prevent="preventDefault">
                         <LikeIcon class="w-2/3 fill-red-700 "  />
                     </Link>
                 </div>
-                <div>
+                <!-- <div>
                     <button class="bg-blue-600 rounded-md h-5 px-5 text-sm" @click="log">Test</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
