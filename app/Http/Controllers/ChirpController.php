@@ -43,7 +43,22 @@ class ChirpController extends Controller
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
- 
+
+        // find current record
+        $result = DB::table('chirps')->where('id','=',$chirp->id)->get();
+        log::info($result[0]->message);
+        // DB::table('chirps')->where('id','=','c198861a-e4d9-4423-8a6a-ea6cf83597c0')->get();
+
+
+        // create new record for initial chirp with details and save as the variant
+        $variantChirp = new Chirp();
+        $variantChirp->user_id = $chirp->user_id;
+        $variantChirp->message = $result[0]->message;
+        $variantChirp->isDeleted = "yes";
+        $variantChirp->variant_of = $chirp->id;
+        $variantChirp->save();
+
+        // update curent chirp
         $chirp->update($validated);
  
         return redirect(route('chirps.index'));
