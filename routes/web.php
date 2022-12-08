@@ -49,4 +49,8 @@ Route::resource('like', LikeController::class)->only(['store']);
 
 Route::resource('follow', FollowController::class)->only(['store']);
 
+Route::get('/account', function(Request $request){
+    return Inertia::render('Account', $request);
+});
+
 require __DIR__.'/auth.php';

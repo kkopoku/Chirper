@@ -21,7 +21,7 @@ class ChirpController extends Controller
         $user = $request->user();
         log::info($user->id);
         return Inertia::render('Chirps/Index',[
-            'chirps' => Chirp::with('user:id,name,username,email')->latest()->get(),
+            'chirps' => Chirp::with('user:id,name,username,email')->where('isDeleted','=',null)->latest()->get(),
             'user' => $request->user()
         ]);
     }
@@ -53,8 +53,9 @@ class ChirpController extends Controller
     public function destroy(Chirp $chirp){
         
         $this->authorize('delete', $chirp);
-        log::info($chirp);
-        $chirp->delete();
+        log::info($chirp->id);
+        // $chirp->delete();
+        DB::table('chirps')->where('id','=', $chirp->id )->update(['isDeleted' => 'yes']);
         return redirect(route('chirps.index'));
     }
 
