@@ -6,11 +6,13 @@ use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
 
 class FollowController extends Controller
 
 {
-    public function index(){
+    public function index(Request $request){
+
         return Inertia::render('Dashboard');
     }
 

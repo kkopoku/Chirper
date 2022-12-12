@@ -43,7 +43,7 @@ const sidebarOpen = ref(false);
             />
           </li>
         </ul>
-        <Link :href="route('dashboard.index')" v-if="$page.props.auth.user" class="bg-transparent ">
+        <Link :href="route('dashboard')" v-if="$page.props.auth.user" class="bg-transparent ">
           <button class="flex justify-center items-center h-14 px-7 font-bold text-white bg-green-500 rounded-xl hover:shadow-2xl transition-shadow duration-300 whitespace-nowrap">
               Dashboard
           </button>
@@ -65,10 +65,8 @@ const sidebarOpen = ref(false);
     <div class="flex flex-wrap-reverse gap-y-24 justify-between py-12 px-6 mx-auto max-w-screen-xl sm:px-8 md:px-12 lg:px-16 xl:px-24">
 
       <div class="relative z-10 md:w-1/2 w-full">
-        <img class="absolute top-0 right-0 md:-top-4 md:-right-8 w-24 h-auto" src="/img/leaf.png" alt=""/>
         <span class="flex items-center px-1 text-xl text-green">
           <span class="font-medium">100% Safe Environment</span>
-          <img class="w-auto h-8" src="/img/vegetable.png" alt="" />
         </span>
         <h1 class="pt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight whitespace-nowrap">
           Healthy Space <br /> is your only <br />

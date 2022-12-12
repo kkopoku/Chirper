@@ -1,5 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import ChirpVue  from '@/Components/Chirp.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 </script>
 
@@ -26,6 +27,15 @@ import { Head } from '@inertiajs/inertia-vue3';
             </div>
             <div>
 
+            </div>
+        </div>
+        <div class="py-5 flex flex-col px-[8.05%]">
+            <div class="mt-6 bg-slate-100 shadow-sm rounded-lg divide-y ">
+                <Chirp
+                    v-for="chirp in chirps"
+                    :key="chirp.id"
+                    :chirp="chirp"
+                />
             </div>
         </div>
     </AuthenticatedLayout>

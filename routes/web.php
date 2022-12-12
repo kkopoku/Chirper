@@ -23,18 +23,19 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'phpVersion' => PHP_VERSION
     ]);
 })->name('index');
 
-Route::resource('dashboard', FollowController::class)
-->only(['index'])
-->middleware(['auth', 'verified']);
+Route::get('/dashboard', function(Request $request){
+    return Inertia::render('Dashboard');
+})
+->name('dashboard');
 
 
 Route::resource('chirps', ChirpController::class)
