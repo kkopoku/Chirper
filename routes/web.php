@@ -46,9 +46,9 @@ Route::get('/unavailable', function () {
     return Inertia::render('FeatureUnavailable');
 })->name('unavailable');
     
-Route::resource('like', LikeController::class)->only(['store']);
+Route::post('like', [LikeController::class,'store'])->name('like');
 
-Route::resource('follow', FollowController::class)->only(['store']);
+Route::post('follow', [FollowController::class, 'store'])->name('follow');
 
 Route::get('/account', function(Request $request){
     return Inertia::render('Account', $request);

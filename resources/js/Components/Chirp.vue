@@ -89,12 +89,12 @@ function log(){
             <div class="flex justify-end">
                 <div v-if="props.chirp.likes.length > 0" class="pr-1" :class="isLiked() == false ? 'text-grey-500' : 'text-red-500 font-extrabold'">{{ props.chirp.likes.length }}</div>
                 <div v-if = "isLiked() == false">
-                    <Link preserve-scroll :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon" @click.prevent="preventDefault">
+                    <Link preserve-scroll :href=" route('like', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon" @click.prevent="preventDefault">
                         <LikeIcon class="w-2/3 fill-blue-300 hover:fill-red-300 "  />
                     </Link>
                 </div>
                 <div v-else>
-                    <Link preserve-scroll :href=" route('like.store', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon" @click.prevent="preventDefault">
+                    <Link preserve-scroll :href=" route('like', {kf_chirp_id: props.chirp.id, kf_user_id: props.user.id}) " method="post" as="icon" @click.prevent="preventDefault">
                         <LikeIcon class="w-2/3 fill-red-700 "  />
                     </Link>
                 </div>
