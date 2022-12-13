@@ -57,7 +57,7 @@ Route::get('/account', function(Request $request){
 
 //google login url
 Route::prefix('google')->name('google.')->group(function(){
-    Route::get('login', [GoogleController::class, 'login'])->name('login ');
+    Route::get('login', [GoogleController::class, 'loginWithGoogle'])->name('login');
     Route::any('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
 });
 

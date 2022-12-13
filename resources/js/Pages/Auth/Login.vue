@@ -26,7 +26,7 @@ const submit = () => {
     });
 };
 
-function log(){
+function googleLogin(){
     console.log('Its working');
 }
 
@@ -69,11 +69,13 @@ function log(){
             </div>
         </form>
 
-        <Link class="h-8 w-100 px-6 mt-4 font-semibold text-gray-900 bg-white border-2 border-gray-500 rounded-md shadow outline-none hover:bg-blue-50 hover:border-blue-400 focus:outline-none" :href="route('google.login')"  method="get">
-            <div class="text-xs">
-                <GoogleIcon /> Sign in with Google
-            </div>
-        </Link> 
+        <Link :href=" route('google.login')">
+            <button class="h-8 w-100 px-6 mt-4 font-semibold text-gray-900 bg-white border-2 border-gray-500 rounded-md shadow outline-none hover:bg-blue-50 hover:border-blue-400 focus:outline-none">
+                <div class="text-xs">
+                    <GoogleIcon /> Sign in with Google
+                </div>
+            </button> 
+        </Link>
 
     </GuestLayout>
 </template>
