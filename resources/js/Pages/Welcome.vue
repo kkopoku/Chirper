@@ -117,7 +117,7 @@ const sidebarOpen = ref(false);
           <div class="absolute left-0 bottom-0 md:bottom-32 lg:bottom-20 bg-white/60 rounded-2xl shadow-2xl backdrop-blur-xl hover:-translate-y-2 hover:shadow-2xl transition-all duration-800">
             <div class="pr-5 pl-4 py-5">
               <div class="font-bold">Fast delivery</div>
-              <div class="text-gray-600 leading-relaxed">30 mins delivery 🚀</div>
+              <div class="text-gray-600 leading-relaxed">less than 1 sec delivery 🚀</div>
             </div>
           </div>
       </div>
@@ -126,55 +126,3 @@ const sidebarOpen = ref(false);
 
   </div>
 </template>
-
-<!-- <Head title="Welcome" />
-
-<div class="grid grid-cols-2">
-
-  <div>
-    <img style='width: 100%; height: 100%;' v-bind:src="'assets/images/background01.jpg'">
-  </div>
-  
-  <div class="grid grid-rows-2 items-center justify-center align-middle">
-
-    <div class="text-4xl font-bold">
-      <img style="width: 10%;" v-bind:src="'https://cdn-icons-png.flaticon.com/512/616/616438.png'">
-      Welcome To Chirper
-    </div>
-    
-    <div>
-      <Link v-if="$page.props.auth.user" :href="route('dashboard')">
-        <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-          Go Back To Dashboard
-        </button>
-      </Link>
-    
-
-      <template v-else>
-        <div v-if="canLogin" class="hidden sm:block">
-
-          <div class="grid grid-cols-1 grid-rows-2 gap-7">
-            <div>
-              <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                <Link :href="route('login')">
-                  Login Hereeeeeeeee !
-                </Link>
-              </button>
-            </div>
-
-            <div>
-              <button class="px-4 py-1 text-lg text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                <Link v-if="canRegister" :href="route('register')">
-                  Click Me To Register !
-                </Link>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </template>
-    </div>
-
-  </div>
-</div> -->
-

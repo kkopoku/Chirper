@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,12 @@ Route::post('follow', [FollowController::class, 'store'])->name('follow');
 
 Route::get('/account', function(Request $request){
     return Inertia::render('Account', $request);
+});
+
+//google login url
+Route::prefix('google')->name('google.')->group(function(){
+    Route::get('login', [GoogleController::class, 'login'])->name('login ');
+    Route::any('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
 });
 
 require __DIR__.'/auth.php';
