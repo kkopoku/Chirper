@@ -32,7 +32,7 @@ return [
     'google' => [
         'client_id' => '309071818811-6av146e1a34884bje0s83bs5c9q0jmqt.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'https://localhost:800/google/callback/',
+        'redirect' => 'https://localhost:8000/google/callback/',
     ]
 
 ];
