@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\FollowController;
-use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +10,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Like;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\GoogleController;
+
 
 
 /*
@@ -56,9 +57,6 @@ Route::get('/account', function(Request $request){
 });
 
 //google login url
-Route::prefix('google')->name('google.')->group(function(){
-    Route::get('login', [GoogleController::class, 'loginWithGoogle'])->name('login');
-    Route::any('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
-});
+Route::get('google.login', [GoogleController::class, 'loginWithGoogle'])->name('google.login');
 
 require __DIR__.'/auth.php';
