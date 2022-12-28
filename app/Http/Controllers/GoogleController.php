@@ -25,35 +25,35 @@ class GoogleController extends Controller
             $user = Socialite::driver('google')->stateless()->user();
 
             // check database if there's an email matching the one from $user
-            $is_user = DB::table('users')->where('email','=',$user->email)->get();
+            $find_user = DB::table('users')->where('email','=',$user->email)->get();
 
-            // update or create user based on search result
-            log::info($is_user);
-            array_push($is_user,"pushing");
-            if(isEmpty($is_user)){
-                log::info("It is empty");
+            // if I cant find a user already in the DB with that email
+            if(empty($find_user[0])){
+                $newUser = new User;
+                $newUser->email = $user->email;
+                $newUser->name = $user->name;
+                $newUser->google_id = $user->id;
+                $newUser->email_verified_at = now();
+                $newUser->password = 'password';
+                $newUser->save();
+                $newUserArr = array($newUser->email, $newUser->google_id, $newUser->name);
+                dd($newUserArr);
             }else{
-                log::info("it is not empty");
+                    // if google id is empty and user found
+                if(empty($find_user[0]->google_id)){
+                    DB::table('users')->where('email','=', $user->email )->update(['google_id' => $user->id]);
+                    dd('updated google_id');
+                }else{
+                    // if google id is not empty and user found
+                    if($find_user[0]->google_id = $user->id){
+                        dd($find_user[0]->name. ' has logged in');
+                    }else{
+                        dd('an error occured');
+                    }
+                }
+            
             }
 
-            // if(!$is_user){
-            //     $newUser = User::updateOrCreate([
-            //         'google_id'=>$user->id
-            //     ],[
-            //         'name'=> $user->name,
-            //         'email'=> $user->email,
-            //         'password'=> 'password',
-            //     ]);
-
-            //     // Auth::loginUsingId($newUser->id);
-            //     // return redirect()->route('dashboard');
-
-            // }else{
-            //     $newUser = User::where('email',$user->email)->update([
-            //         'google_id'=>  $user->id,
-            //     ]);
-            //     $newUser = User::where('email',$user->email);
-            // }
         } catch (\Throwable $th) {
             throw $th;
         }
