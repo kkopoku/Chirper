@@ -37,7 +37,7 @@ class GoogleController extends Controller
                 $newUser->password = 'password';
                 $newUser->save();
                 $newUserArr = array($newUser->email, $newUser->google_id, $newUser->name);
-                dd($newUserArr);
+                dd($newUserArr . " new user has been created with these details");
             }else{
                     // if google id is empty and user found
                 if(empty($find_user[0]->google_id)){
