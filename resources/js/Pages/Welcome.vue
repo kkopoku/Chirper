@@ -80,7 +80,7 @@ const sidebarOpen = ref(false);
         </p>
         <template v-else>
           <div class="flex pt-8 space-x-4 sm:space-x-6">
-            <Link :href="route('test')" class="bg-transparent ">
+            <Link :href="route('login')" class="bg-transparent ">
               <button class="flex justify-center items-center w-full sm:w-auto h-14 px-8 bg-green-500 font-bold text-white rounded-xl whitespace-nowrap hover:shadow-2xl transition-shadow duration-300">
                 Login
               </button>

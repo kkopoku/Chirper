@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 class PaymentController extends Controller
 {
     function receivePayment(){
-        // type some code here
         log::info("payment received");
     }
 }
